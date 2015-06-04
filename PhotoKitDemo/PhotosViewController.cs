@@ -23,7 +23,7 @@ namespace PhotoKitDemo
            
             observer = new PhotoLibraryObserver (this);
 
-            PHPhotoLibrary.GetSharedPhotoLibrary.RegisterChangeObserver (observer);
+            PHPhotoLibrary.SharedPhotoLibrary.RegisterChangeObserver (observer);
         }
 
         class PhotoLibraryObserver : PHPhotoLibraryChangeObserver
@@ -62,7 +62,7 @@ namespace PhotoKitDemo
         {
             var imageCell = (ImageCell)collectionView.DequeueReusableCell (cellId, indexPath);
 
-            imageMgr.RequestImageForAsset ((PHAsset)fetchResults [(uint)indexPath.Item], new SizeF (160, 160), 
+            imageMgr.RequestImageForAsset ((PHAsset)fetchResults[indexPath.Item], new SizeF (160, 160), 
                 PHImageContentMode.AspectFill, new PHImageRequestOptions (), (img, info) => {
                 imageCell.ImageView.Image = img;
             });
@@ -73,7 +73,7 @@ namespace PhotoKitDemo
         public override void ItemSelected (UICollectionView collectionView, NSIndexPath indexPath)
         {
             var photoController = new PhotoViewController {
-                Asset = (PHAsset)fetchResults [(uint)indexPath.Item]
+                Asset = (PHAsset)fetchResults[indexPath.Item]
             };
             NavigationController.PushViewController (photoController, true);
         }
