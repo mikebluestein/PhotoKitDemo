@@ -47,7 +47,7 @@ namespace PhotoKitDemo
                 editingOutput.AdjustmentData = adjustmentData;
 
                 // make a change request to publish the changes form the editing output
-                PHPhotoLibrary.GetSharedPhotoLibrary.PerformChanges (
+                PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (
                     () => {
                         PHAssetChangeRequest request = PHAssetChangeRequest.ChangeRequest (Asset);
                         request.ContentEditingOutput = editingOutput;
@@ -62,7 +62,7 @@ namespace PhotoKitDemo
 
             imageView = new UIImageView (View.Frame);
 
-            PHImageManager.GetDefaultManager.RequestImageForAsset (Asset, View.Frame.Size, 
+            PHImageManager.DefaultManager.RequestImageForAsset (Asset, View.Frame.Size, 
                 PHImageContentMode.AspectFit, new PHImageRequestOptions (), (img, info) => {
                 imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
                 imageView.Image = img;
